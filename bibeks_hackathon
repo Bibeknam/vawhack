@@ -1,0 +1,157 @@
+-- MySQL dump 10.13  Distrib 5.5.30, for Linux (x86_64)
+--
+-- Host: localhost    Database: bibeks_hackathon
+-- ------------------------------------------------------
+-- Server version	5.5.30-cll-lve
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `district`
+--
+
+DROP TABLE IF EXISTS `district`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `district` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `zoneId` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `district`
+--
+
+LOCK TABLES `district` WRITE;
+/*!40000 ALTER TABLE `district` DISABLE KEYS */;
+INSERT INTO `district` VALUES (1,1,'Ilam'),(2,1,'Jhapa'),(3,1,'Panchthar'),(4,1,'Taplejung'),(5,2,'Bhojpur'),(6,2,'Dhankuta'),(7,2,'Morang'),(8,2,'Sankhuwasabha'),(9,2,'Sunsari'),(10,2,'Terhathum'),(11,3,'Khotang'),(12,3,'Okhaldhunga'),(13,3,'Saptari'),(14,3,'Siraha'),(15,3,'Solukhumbu'),(16,3,'Udayapur'),(17,4,'Dhanusa'),(18,4,'Dolakha'),(19,4,'Mahottari'),(20,4,'Ramechhap'),(21,4,'Sarlahi'),(22,4,'Sindhuli'),(23,5,'Bhaktapur'),(24,5,'Dhading'),(25,5,'Kathmandu'),(26,5,'Kavrepalanchok'),(27,5,'Lalitpur'),(28,5,'Nuwakot'),(29,5,'Rasuwa'),(30,5,'Sindhulpalchok'),(31,6,'Bara'),(32,6,'Chitwan'),(33,6,'Makwanpur'),(34,6,'Parsa'),(35,6,'Rautahat'),(36,7,'Gorkha'),(37,7,'Kaski'),(38,7,'Lamjung'),(39,7,'Manang'),(40,7,'Syangja'),(41,7,'Tanahu'),(42,8,'Arghakhanchi'),(43,8,'Gulmi'),(44,8,'Kapilvastu'),(45,8,'Nawalparasi'),(46,8,'Palpa'),(47,8,'Rupandehi'),(48,9,'Baglung'),(49,9,'Mustang'),(50,9,'Myagdi'),(51,9,'Parbat'),(52,10,'Dolpa'),(53,10,'Humla'),(54,10,'Jumla'),(55,10,'Kalikot'),(56,10,'Mugu'),(57,11,'Banke'),(58,11,'Bardiya'),(59,11,'Dailekh'),(60,11,'Jajarkot'),(61,11,'Surkhet'),(62,12,'Dang Deukhuri'),(63,12,'Pyuthan'),(64,12,'Rolpa'),(65,12,'Rukum'),(66,12,'Salyan'),(67,13,'Achham'),(68,13,'Bajhang'),(69,13,'Bajura'),(70,13,'Doti'),(71,13,'Kailali'),(72,14,'Baitadi'),(73,14,'Dadeldhura'),(74,14,'Darchula'),(75,14,'Kanchanpur');
+/*!40000 ALTER TABLE `district` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `incominglogs`
+--
+
+DROP TABLE IF EXISTS `incominglogs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `incominglogs` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `sender` varchar(15) NOT NULL,
+  `uniqueKey` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `timelog` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `isModerated` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `incominglogs`
+--
+
+LOCK TABLES `incominglogs` WRITE;
+/*!40000 ALTER TABLE `incominglogs` DISABLE KEYS */;
+INSERT INTO `incominglogs` VALUES (10,'9806693451','i','m realy in trouble','0000-00-00 00:00:00',1),(11,'9841945628','There','is an women tortured by the family member from very beginning of marriage from a year at kathmandu,kalimati-5 .','0000-00-00 00:00:00',1),(12,'9841945628','There','is an women tortured by the family member from very beginning of marriage from a year at kathmandu,sundhara-5 .','0000-00-00 00:00:00',1),(13,'9806693451','bibek','birgunj, buspark, a girl of 17 are taken by a man','2013-06-16 02:16:57',0);
+/*!40000 ALTER TABLE `incominglogs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `moderatedlogs`
+--
+
+DROP TABLE IF EXISTS `moderatedlogs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `moderatedlogs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rawId` int(11) NOT NULL,
+  `districtId` int(2) NOT NULL,
+  `zoneId` int(2) NOT NULL,
+  `Location` varchar(255) NOT NULL,
+  `Type` varchar(255) NOT NULL,
+  `Message` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `moderatedlogs`
+--
+
+LOCK TABLES `moderatedlogs` WRITE;
+/*!40000 ALTER TABLE `moderatedlogs` DISABLE KEYS */;
+INSERT INTO `moderatedlogs` VALUES (8,10,2,1,'Chandragadi','1','m realy in trouble'),(9,11,25,5,'kalimati','1','is an women tortured by the family member from very beginning of marriage from a year at kathmandu,kalimati-5 .'),(10,12,25,5,'sundhara','1','is an women tortured by the family member from very beginning of marriage from a year at kathmandu,sundhara-5 .');
+/*!40000 ALTER TABLE `moderatedlogs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `violencetype`
+--
+
+DROP TABLE IF EXISTS `violencetype`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `violencetype` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `violencetype`
+--
+
+LOCK TABLES `violencetype` WRITE;
+/*!40000 ALTER TABLE `violencetype` DISABLE KEYS */;
+INSERT INTO `violencetype` VALUES (1,'Domestic Violence'),(2,'Sexual Problems'),(3,'Drug Addiction'),(4,'Suicide'),(5,'Rape'),(6,'Teen Age Pregnancy'),(7,'Dipression'),(8,'Trafficking'),(9,'Witch-hunt');
+/*!40000 ALTER TABLE `violencetype` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `zone`
+--
+
+DROP TABLE IF EXISTS `zone`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `zone` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `zone`
+--
+
+LOCK TABLES `zone` WRITE;
+/*!40000 ALTER TABLE `zone` DISABLE KEYS */;
+INSERT INTO `zone` VALUES (1,'Mechi'),(2,'Koshi'),(3,'Sagarmatha'),(4,'Janakpur'),(5,'Bagmati'),(6,'Narayani'),(7,'Gandaki'),(8,'Lumbini'),(9,'Dhaulagiri'),(10,'Karnali'),(11,'Bheri'),(12,'Rapti'),(13,'Seti'),(14,'Mahakali');
+/*!40000 ALTER TABLE `zone` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-07-03  4:25:13
